@@ -1,0 +1,19 @@
+services:
+  app:
+    build: .
+    ports:
+      - "5000:5000"
+    depends_on:
+      - database
+
+  database:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: siddig
+      POSTGRES_PASSWORD: labpassword
+      POSTGRES_DB: homelab
+    volumes:
+       - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
