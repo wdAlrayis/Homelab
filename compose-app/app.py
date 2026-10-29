@@ -1,14 +1,15 @@
 from flask import Flask
 import psycopg2
-
+import os
 app = Flask(__name__)
 
 def get_connection():
     return psycopg2.connect(
+
         host="database",
-        database="homelab",
-        user="siddig",
-        password="labpassword"
+        database=os.getenv("POSTGRES_DB"),
+        user=os.getenv("POSTGRES_USER"),
+        password=os.getenv("POSTGRES_PASSWORD"),
 )
 
 @app.route("/")
